@@ -58,7 +58,7 @@ export default async function Story({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
       <div className="container mx-auto space-y-12">
         <StoryHero item={story} />
-        <ChapterList item={story.chapters} />
+        <ChapterList chapters={story.chapters} item={story} />
       </div>
     </article>
   )

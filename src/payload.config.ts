@@ -3,7 +3,6 @@ import { postgresAdapter } from '@payloadcms/db-postgres'
 
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
-import sharp from 'sharp' // sharp-import
 import { fileURLToPath } from 'url'
 
 import { Chapter } from '@/collections/Chapters'
@@ -14,6 +13,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { Ratings } from './collections/Ratings'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -67,7 +67,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Chapter, Story],
+  collections: [Pages, Posts, Media, Categories, Users, Chapter, Story, Ratings],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
@@ -75,7 +75,7 @@ export default buildConfig({
     // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET,
-  sharp,
+  // sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

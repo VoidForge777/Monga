@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-import { withTV } from 'tailwind-variants/transformer'
 
-const config = withTV({
+const config = {
   darkMode: ['[data-theme="dark"]', 'class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -170,6 +169,6 @@ const config = withTV({
     require('tailwindcss-react-aria-components'),
     require('@tailwindcss/typography'),
   ],
-})
+}
 
 export default config

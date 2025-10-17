@@ -4,12 +4,13 @@ import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 type ChapterListProps = {
-  item: Story['chapters']
+  chapters: Story['chapters']
+  item: Story
 }
-function ChapterList({ item }: ChapterListProps) {
-  if (!item?.chapters) return null
+function ChapterList({ chapters, item }: ChapterListProps) {
+  if (!chapters?.chapters) return null
 
-  if (item.chapters.length === 0)
+  if (chapters.chapters.length === 0)
     return (
       <Card>
         <CardHeader>
@@ -31,7 +32,7 @@ function ChapterList({ item }: ChapterListProps) {
       </CardHeader>
       <CardContent>
         <ul className="relative [&>[data-drop-target]]:border [&>[data-drop-target]]:border-primary [&::-webkit-scrollbar]:size-0.5 [scrollbar-width:thin] max-h-96 overflow-auto rounded-lg border">
-          {item.chapters.map(
+          {chapters.chapters.map(
             (chapter) =>
               typeof chapter !== 'number' && (
                 <li
@@ -40,7 +41,7 @@ function ChapterList({ item }: ChapterListProps) {
                 >
                   <Link
                     key={chapter.id}
-                    href={`/stories/${chapter.slug}`}
+                    href={`/stories/${item.slug}/${chapter.slug}`}
                     className="w-full h-full flex items-center gap-2"
                   >
                     <ChevronRight className="size-3 text-muted-fg" />
